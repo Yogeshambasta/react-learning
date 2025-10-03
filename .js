@@ -268,3 +268,217 @@ ankit.cancel()
 
 // hello!
 // end2
+
+
+// arrays
+// Using array literal
+let fruits = ["apple", "banana", "mango"];
+console.log(fruits); 
+
+// Using Array constructor
+let numbers = new Array(1, 2, 3, 4);
+console.log(numbers); 
+
+// Empty array
+let emptyArr = [];
+console.log(emptyArr); 
+
+//Common Array Methods
+// Adding & Removing Elements
+let colors = ["red", "green", "blue"];
+
+// push() - add to end
+colors.push("yellow");
+console.log(colors); 
+
+// pop() - remove from end
+let lastColor = colors.pop();
+console.log(lastColor); 
+console.log(colors); 
+
+// unshift() - add to start
+colors.unshift("purple");
+console.log(colors); 
+
+// shift() - remove from start
+let firstColor = colors.shift();
+console.log(firstColor); 
+console.log(colors); 
+
+// splice and slice
+
+let numbers = [10, 20, 30, 40];
+
+// slice(start, end) - returns a portion (does not modify original)
+let part = numbers.slice(1, 3);
+console.log(part); 
+
+// splice(start, deleteCount, items...) - modify original array
+numbers.splice(1, 2, 25, 35);
+console.log(numbers); 
+
+// length - get number of elements
+console.log(numbers.length); 
+
+// convert string uppercase with map() method
+
+let fruits = ["apple", "banana", "mango"];
+
+let upperFruits = fruits.map(fruit => fruit.toUpperCase());
+
+console.log(upperFruits); 
+
+// basic syntax
+
+let newArray = array.map(function(currentValue, index, array) {
+    // return the new value for the new array
+});
+
+// Arrow Function Syntax
+let newArray = array.map((currentValue, index, array) => {
+    // return the new value
+});
+
+
+// spread and rest operator
+
+//example rest
+
+function addNumbers(a,b,c,...other){
+  console.log(other[1])
+  return a+b+c;
+
+}
+
+const result = addNumbers(2,5,6,8,9)
+console.log(result)
+
+// spread
+
+var names = ["ajay","ankit","yogesh"];
+function getNames(name1,name2,name3){
+  console.log(name1,name2,name3)
+}
+getNames(names[0],name[1],names[2])
+getNames(...names)
+
+// functions inside functions
+
+
+function outerFunction() {
+  console.log("This is the outer function.");
+
+  function innerFunction() {
+    console.log("This is the inner function.");
+  }
+
+  // Calling inner function
+  innerFunction();
+}
+
+// Call outer function
+outerFunction();
+
+// Two-Way-Binding
+
+// app.js
+
+import React from "react";
+import Review from "./components/Review";
+
+export default function App() {
+  const [enteredTitle, setEnteredTitle] = React.useState("");
+  const [enteredFeedback, setEnteredFeedback] = React.useState("");
+
+  function handleTitleChange(event) {
+    setEnteredTitle(event.target.value);
+  }
+
+  function handleFeedbackChange(event) {
+    setEnteredFeedback(event.target.value);
+  }
+
+  return (
+    <div>
+      <section id="feedback">
+        <h2>Share your Feedback</h2>
+        <input
+          type="text"
+          placeholder="Your Title"
+          value={enteredTitle}
+          onChange={handleTitleChange}
+        />
+        <textarea
+          placeholder="Your Feedback"
+          value={enteredFeedback}
+          onChange={handleFeedbackChange}
+        />
+        <button>Save</button>
+      </section>
+
+      <Review title={enteredTitle} feedback={enteredFeedback} />
+    </div>
+  );
+}
+
+// review.js
+
+// src/components/Review.js
+import React from "react";
+
+export default function Review({ title, feedback }) {
+  return (
+    <figure className="review">
+      <figcaption>
+        <h2>{title}</h2>
+      </figcaption>
+      <p>{feedback}</p>
+    </figure>
+  );
+}
+
+// one way binding
+
+import React, { useState } from "react";
+
+function OneWayBinding() {
+  const [name, setName] = useState("John");
+
+  return (
+    <div>
+      <h2>Hello, {name}</h2>
+      {/* Here UI changes don’t affect state directly */}
+      <input value={name} readOnly />
+    </div>
+  );
+}
+
+export default OneWayBinding;
+
+// two way binding
+
+import React, { useState } from "react";
+
+function TwoWayBinding() {
+  const [name, setName] = useState("");
+
+  return (
+    <div>
+      <h2>Hello, {name}</h2>
+      
+      {/* Input value comes from state, 
+          onChange updates the state when user types */}
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+    </div>
+  );
+}
+
+export default TwoWayBinding;
+
+// end 03.10
+
+
