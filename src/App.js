@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
 function App() {
+  const [error, setError] = useState("");
+  const [fileName, setFileName] = useState("");
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const fileExtension = file.name.split(".").pop().toLowerCase();
+
+      if (fileExtension === "cdr") {
+        setError(""); // error hata do
+        setFileName(file.name); // selected file ka naam dikhaye
+      } else {
+        setError(" Invalid file! Please select a .cdr file.");
+        setFileName("");
+      }
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h2>Upload CDR File</h2>
+
+      {/* Hidden input */}
+      <input
+        type="file"
+        id="fileInput"
+        style={{ display: "none" }}
+        onChange={handleFileChange}
+      />
+
+      {/* Button to trigger hidden input */}
+      <button onClick={() => document.getElementById("fileInput").click()}>
+        Choose File
+      </button>
+
+      {/* File Name */}
+      {fileName && <p> Selected File: {fileName}</p>}
+
+      {/* Error Message */}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 }
